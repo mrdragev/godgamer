@@ -99,6 +99,7 @@ while True:
     if ball.ycor() < -290:
         ball.sety(-290)
         ball.dy *= -1
+        #os.system("aplay bounce.wav")
 
     #Vertical control
     if ball.xcor() >= 390:
@@ -114,3 +115,13 @@ while True:
         score_2 +=1
         pen.clear()
         pen.write("Player 1 : {} Player 2 : {}".format(score_1, score_2), align="center", font=("Courier", 24, "normal"))
+
+    #Collisions
+
+    #Player 2
+    if ball.xcor() > 340 and ball.xcor() < 350 and (ball.ycor() < player_2.ycor() + 40 and ball.ycor() > player_2.ycor() -40):
+        ball.dx *= -1
+        
+    #Player 1
+    if ball.xcor() < -340 and ball.xcor() > -350 and (ball.ycor() < player_1.ycor() + 40 and ball.ycor() > player_1.ycor() -40):
+        ball.dx *= -1
