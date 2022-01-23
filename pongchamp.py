@@ -7,6 +7,11 @@ window.bgcolor("gray")
 window.setup(width=800,height=600)
 window.tracer(0)
 
+# Score
+score_1 = 0
+score_2 = 0
+
+
 # Player 1
 player_1 = turtle.Turtle()
 player_1.speed(0)
@@ -36,8 +41,17 @@ ball.goto(0,0)
 ball.dx = 0.1
 ball.dy = 0.1
 
+# Pen
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0,260)
+pen.write("Player 1 : 0 Player 2 : 0", align="center", font=("Courier", 24, "normal"))
 
 # Functions
+
 #Player 1
 def player_1_up():
     y = player_1.ycor()
@@ -48,6 +62,7 @@ def player_1_down():
     y = player_1.ycor()
     y -= 20
     player_1.sety(y)
+
 #Player 2
 def player_2_up():
     y = player_2.ycor()
@@ -66,6 +81,7 @@ window.onkeypress(player_1_up, "w")
 window.onkeypress(player_1_down, "s")
 window.onkeypress(player_2_up, "Up")
 window.onkeypress(player_2_down, "Down")
+
 
 #main game xD
 while True:
@@ -88,8 +104,13 @@ while True:
     if ball.xcor() >= 390:
         ball.goto(0,0)
         ball.dx *= -1
+        score_1 +=1
+        pen.clear()
+        pen.write("Player 1 : {} Player 2 : {}".format(score_1, score_2), align="center", font=("Courier", 24, "normal"))
 
     if ball.xcor() < -390:
         ball.goto(0,0)
         ball.dx *= -1
-
+        score_2 +=1
+        pen.clear()
+        pen.write("Player 1 : {} Player 2 : {}".format(score_1, score_2), align="center", font=("Courier", 24, "normal"))
